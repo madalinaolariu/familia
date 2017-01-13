@@ -464,3 +464,52 @@ void afisareRudenie(int v[], int sfv, Membru a, Membru b)
       cout << a.nume << " este ruda indepartata cu " << b.nume;
 
 }
+void dfs(int a, int b, bool &ok, int vizitat[], int &sfv, int v[], Membru initial, Membru cautat)
+{
+    if(vizitat[a] == 0) vizitat[a] = 1;
+    else return;
+
+    if(a == b)
+    {
+        ok = true;
+
+        afisareRudenie(v, sfv, initial, cautat);
+
+        cout << endl;
+    }
+
+    for(int i = 0; i < arbore.nrLegaturi[a]; i++)
+    {
+        int x = arbore.legaturi[a][i];
+
+        if(sign(v[sfv]) == 0)
+        {
+            v[sfv] += arbore.tipLegaturi[a][i];
+
+            dfs(x, b, ok, vizitat, sfv, v, initial, cautat);
+
+            v[sfv] -= arbore.tipLegaturi[a][i];
+        }
+        else
+        {
+            if(sign(v[sfv]) == arbore.tipLegaturi[a][i])
+            {
+                v[sfv] += arbore.tipLegaturi[a][i];
+
+                dfs(x, b, ok, vizitat, sfv, v, initial, cautat);
+
+                v[sfv] -= arbore.tipLegaturi[a][i];
+            }
+            else
+            {
+                sfv++;
+                v[sfv] += arbore.tipLegaturi[a][i];
+
+                dfs(x, b, ok, vizitat, sfv, v, initial, cautat);
+
+                v[sfv] -= arbore.tipLegaturi[a][i];
+                sfv--;
+            }
+        }
+    }
+}

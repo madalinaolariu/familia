@@ -513,3 +513,111 @@ void dfs(int a, int b, bool &ok, int vizitat[], int &sfv, int v[], Membru initia
         }
     }
 }
+
+void rudenie()
+{
+    string x, y;
+
+    int a, b;
+    bool breakpoint=false;
+
+    while(1)
+    {
+
+        system("cls");
+        cout<<"\t\tAflati legaturile de rudenie\n";
+            cout<<"\n\tDaca ati terminat apasati tasta S apoi apasati tasta ENTER\n\n";
+
+        while(1)
+        {
+            cout << "Introduceti numele primului membru:\n";
+
+            getline(cin, x);
+
+             if(x == "S")
+             {
+                 breakpoint=true;
+
+                break;}
+            a = found(x);
+
+            if(a == -1) cout << "Nume invalid, introduceti din nou!\n";
+
+            else break;
+        } if (breakpoint) break;
+
+        while(1)
+        {
+            cout << "Introduceti numele celui de-al doilea membru:\n";
+
+            getline(cin, y);
+
+            b = found(y);
+
+            if(b == -1 || y == x) cout << "Nume invalid, introduceti din nou!\n";
+
+            else break;
+        }
+
+        int v[100], sfv, vizitat[100];
+        bool ok;
+
+        curat(v, sfv, ok, vizitat);
+
+        dfs(a, b, ok, vizitat, sfv, v, arbore.arb[a], arbore.arb[b]);
+
+        if(ok == 0)
+        {
+            cout << "Cei doi nu sunt inruditi!\n\n";
+        }
+
+        Sleep(5000);
+    }
+
+
+}
+
+void meniu()
+{
+    system("cls");
+    cout<<"\n\t Proiect Introducere in programare-FAMILIA\n\n";
+    cout<<"\n\t1. Introduceti arborele genealogic\n";
+    cout<<"\n\t\t - Adaugati membrii arborelui genealogic\n";
+    cout<<"\n\t\t - Inserati relatiile parinte-copil\n";
+    cout<<"\n\t\t - Aflati legaturile de rudenie\n";
+    cout<<"\n\t2. Iesire \n";
+}
+
+int main()
+{
+    int op;
+    do
+    {
+        meniu();
+        cout<<"\n\n\n\tOptiunea dvs: ";
+        cin>>op;
+        cin.get();
+        system("cls");
+        switch(op)
+        {
+        case 1:
+        {
+            init();
+
+            cititre();
+
+            rudenie();
+
+            break;
+        }
+
+        case 2:
+            return 0;
+        }
+        cin.get();
+    }
+    while(op>=1 && op<=2);
+}
+
+
+

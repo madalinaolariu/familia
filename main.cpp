@@ -68,7 +68,7 @@ void cititre()
 
     while(1)
     {
-        cout<<"\n Nume membru: \n";
+       cout<<"\n Nume membru: \n";
 
 
         getline(cin, x);
@@ -76,7 +76,7 @@ void cititre()
         if(x == "S") break;
 
 
-        cout<<" Daca "<<x<<" este femeie apasati F, daca este barbat apasati B: ";
+     cout<<" Daca "<<x<<" este femeie apasati F, daca este barbat apasati B: ";
         while(getline(cin, y))
         {
             if(y == "F" || y == "B") break;
@@ -145,4 +145,322 @@ void cititre()
     }
 
     system("cls");
+}
+
+
+
+
+
+
+int sign(int a)
+{
+    if(a > 0) return 1;
+
+    if(a < 0) return -1;
+
+    return 0;
+}
+
+void curat(int v[], int &sfv, bool &ok, int vizitat[])
+{
+    for(int i = 0; i < 100; i++)
+    {
+        v[i] = 0;
+        vizitat[i] = 0;
+    }
+
+    sfv = 0;
+
+    ok = false;
+}
+
+void afisareRudenie(int v[], int sfv, Membru a, Membru b)
+{
+    if(sfv == 0)
+    {
+        if(v[0] == -1)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "fiul lui " << b.nume;
+
+            else
+            {
+                cout << "fiica ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+        if(v[0] == -2)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "nepotul lui" << b.nume;
+            else
+            {
+                cout << "nepoata ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+        if(v[0] == -3)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "stranepotul lui "<<b.nume;
+            else
+            {
+                cout << "stranepoata ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+        if(v[0] == 1)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat)
+            {
+                cout<<"tatal ";
+                if(!b.barbat)
+                {
+
+
+                    if(b.nume[b.nume.size()-1] == 'a')
+                    {
+                        string x;
+                        x=b.nume;
+                        x[x.size() - 1] ='e';
+                        x.append("i");
+                        cout << x;
+                    }
+                    else cout << "lui " << b.nume;
+                }
+            }
+
+            if(!a.barbat)
+            {
+                cout << "mama ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+}
+        if(v[0] == 2)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "bunicul lui"<<b.nume;
+            else
+            {
+                cout << "bunica ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+        if(v[0] == 3)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "strabunicul lui "<<b.nume;
+            else
+            {
+                cout << "strabunica ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+    }
+    if(sfv == 1)
+    {
+        if(v[0] == 1 && v[1] == -1)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat)
+            {cout << "sotul ";
+
+
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+
+            else cout<<"sotia lui "<<b.nume;
+        }
+        if(v[0] == -2 && v[1] == 2)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "verisorul lui "<<b.nume;
+            else
+            {
+                cout << "verisoara ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+        if(v[0] == -1 && v[1] == 1)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "fratele lui"<<b.nume;
+            else
+            {
+                cout << "sora ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+        if(v[0] == -2 && v[1] == 1)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "nepotul lui "<<b.nume;
+            else
+            {
+                cout << "nepoata ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+
+
+         if(v[0] == -1 && v[1] == 2)
+        {
+            cout << a.nume << " este ";
+
+            if(a.barbat) cout << "unchiul lui "<<b.nume;
+            else
+            {
+                cout << "matusa ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+    }
+    if(sfv == 2)
+    {
+        if(v[0] == -1 && v[1] == 2 && v[2] == -1 || v[0] == 1 && v[1] == -2 && v[2] == 1)
+        {
+            cout<< a.nume << " este ";
+
+            if(a.barbat) cout << "cumnatul lui "<<b.nume;
+            else
+            {
+                cout << "cumnata ";
+
+                if(b.nume[b.nume.size()-1] == 'a')
+                {
+                    string x;
+                    x=b.nume;
+                    x[x.size() - 1] ='e';
+                    x.append("i");
+
+                    cout << x;
+                }
+                else cout << "lui " << b.nume;
+            }
+        }
+    }
+    if(sfv > 2)
+      cout << a.nume << " este ruda indepartata cu " << b.nume;
+
 }
